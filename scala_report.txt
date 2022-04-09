@@ -1,0 +1,304 @@
+                       ### Report Date 4/4/2022##
+
+Installisation on intallij Idea , plugin with scala, github desktop, created github account   
+
+
+                       ###Report Date 5/4/2022###
+
+                       ***Basic of scala*** 
+
+1)what is scala.
+-->it is a scalable programming language designed for patterns in elegant,concise .
+static type it is same like java but it has small difference 
+we need to diclear the type of every veriable ( or it will figure out the type)
+it runs on java virtule machine, we can use any java code 
+object orented and functional programing ,it is as fast as java ,50% reduction code compare to java
+
+
+2)why scala ?
+
+1)it is object orented --- every value is an object .., type ans object is 
+described the classes 
+2)Higher order function:that is it can return another function or
+ take as a perameter 
+3) statically type because it do type of checking at the compile time
+4)scala compiler converte the source into java byte code that runs on the
+jvm (java vertual machine)
+
+3)scala vs java 
+
+a)Scala is a statically typed programming language whereas Java is a multi-platform, programming language.
+b)Scala variables are by default immutable type while Java variables are by default mutable type.
+c)Scala supports lazy evaluation while Java doesn’t support lazy evaluation.
+d)Scala doesn’t contain static members whereas Java contains static members.
+e)Scala supports operator overloading whereas Java doesn’t support operator overloading.
+f)Scala frameworks are Play, Lift whereas Java frameworks are Spring, Grails, and many more.
+ 
+
+4)scala web frame work(fw)
+
+1) the lift fw
+2) the play fw
+3) the bowler fm
+
+
+5) features of scala
+
+1) it is Type inference
+that is scala automatically detects an expression data type :
+val a = 1=
+op : int = 10
+
+val a2 = 10.51
+op: double = 10.51
+
+2) it is a singleton object insted of static variable and methods
+
+3) immutability : once we declear a val function we cannon change 
+
+4) lazy evelution:if we declare a lazy keyword scala evalutes untill it needs but 
+not prior
+
+lazy val myimage = getimages()
+
+5)Higher order function:that is it can return another function or take as a perameter 
+
+6) rich set of collections:the scala library has scala.collection.immutable and
+scala.collection.mutable packages hold all the data type that is mutable and immutable
+
+7) scala is OOP which has encaplsulation, inheritance, polymorphism .
+
+8) statically type because it do type of checking at the compile time
+
+9) scala compiler converte the source into java byte code that runs on the
+jvm (java vertual machine)
+
+6) what is SBT
+
+-->SBT (scala bult tool ) it is an open source bult tool for scala and java projects 
+bult tool ( provide to facilate to run , compile , test , packahge projects )
+sbt support compling scala code, uses apache ivy for dependency management
+ 
+
+                     ###Report Date 6/4/2022####
+
+                    ***Variable Values and Type***
+
+1) variables in scala
+-->defined as value, i.e., constant or a variable. Here, var is declared using 
+the keyword var. It is a variable that can change value and this is called mutable 
+variable. Following is the syntax to define a variable using var keyword 
+
+variable:
+a) var x: Int = 42
+     println(x)
+
+b)var a: Int = 12
+  a += 20
+  println
+
+c) var data = 100  
+   data = 101  // It works, No error
+
+
+2) value in scala
+-->This means that it is a variable that cannot be changed and this is called immutable 
+variable. Following is the syntax to define a variable using val keyword 
+type in the val are optional ti will look at left side and asign the data type 
+
+
+val x = 42
+     println(x)
+
+3)Data Types in Scala
+-->The type of a variable is specified after the variable name and before equals sign
+
+#Variable Type Inference
+-->>When you assign an initial value to a variable, the Scala compiler can figure out
+the type of the variable based on the value assigned to it is called variable type inference
+
+var myVar = 10;
+val myVal = "Hello, Scala!";
+
+#examples
+
+  val aString: String = "hello"
+  val anotherString = "goodbye"
+
+  val aBoolean: Boolean = false
+  val aChar: Char = 'a'
+  val anInt: Int = x
+  val aShort: Short = 4613
+  val aLong: Long = 5273985273895237L
+  val aFloat: Float = 2.0f
+  val aDouble: Double = 3.14
+
+
+#Instructions (statements) are executed
+#Expressions (values) are evaluated
+
+                         ###Report Date 7/4/2022####
+
+                         ***unittesting in python***
+
+1) unit testing: individual component testing whether a perticular unit is working properly
+or not is called unit testing. 
+2) intergration testing: the process of testing total application(end to end testing)
+
+
+test scenario
+test case
+test suite
+
+gmail application :
+
+### testing login functionality ---> test scenario
+1)valid username and valid password --> TC1 
+1)valid username and invalid password --> TC2 
+1)invalid username and valid password --> TC3 
+1)invalid username and invalid password --> TC4 
+1)empty username and empty password --> TC5 
+
+
+
+how to perform unit testing in python
+
+module name: untitest
+class name: TestCase
+instance methods:
+
+
+1) setup()
+2) test()
+3) teasdown()
+
+
+
+setup(): open chrome browser
+test1(): test login functionality in google crome
+teardown(): close chrome browser
+
+setup(): open firefox
+test1(): test login functionality in firefox
+teardown(): close firefox
+
+
+setUpClass(cls):
+
+test1: test login functionality on chrome with valid username and password 
+test2: test login functionality on chrome with invalid username and password 
+
+
+here the chrome is same for both test1
+
+                              ***Functions in scala ***
+1) what is functions and methods 
+
+A function is a group of statements that perform a task. we can divide up code 
+into separate functions.
+Scala has both functions and methods and we use the terms method and 
+function interchangeably with a minor difference. A Scala method is a part
+of a class which has a name, a signature, optionally some annotations,
+and some bytecode where as a function in Scala is a complete object which can be assigned to a variable.
+
+examples :
+
+  def aParameterlessFunction(): Int = 42
+  println(aParameterlessFunction())
+  
+  def aRepeatedFunction(aString: String, n: Int): String = {
+    if (n == 1) aString
+    else aString + aRepeatedFunction(aString, n-1)
+
+                               *** Recusrsion in scala ***
+1) what is recursion
+-->Recursion is a function that calls itself until an exit condition is met. 
+It is a way to break down a large problem into smaller problems which when all solved 
+will also solve the large problem.
+
+
+2) what is scala tail recursion 
+
+-->A tail recursive function in Scala is remedy if your recursive functions causes 
+a stack overflow. Furthermore, tail recursion is a great way if to make your 
+code faster and memory constant
+
+examples:
+a)
+def factorial(n: Int): Int = {     
+    if(n <= 1) 1 // exit condition     
+    else n * factorial(n - 1) // recursive call to itself  
+  }
+
+b)
+@tailrec  
+def factorial(n: Int, accumulator: Int): Int =
+    if(n <= 1) accumulator // exit condition     
+    else factorial(n - 1, n * accumulator) // recursive call 
+  }
+
+
+                            ###Report Date 8/4/2022####
+
+                         ***Call by value and Call by name***
+
+
+1) call by name:
+-->call-by-name mechanism passes a code block to the call and each time the call 
+accesses the parameter, the code block is executed and the value is calculated. 
+Here, delayed prints a message demonstrating that the method has been entered. 
+Next, delayed prints a message with its value. Finally, delayed returns ‘t’
+
+
+2) call by name:
+In call-by-value strategy, basically, function arguments will be reduced to a 
+single value before rewriting the function application 
+(i.e executing the function body).
+
+examples:
+
+ def callbyvalues(x: Long): Unit = {
+    println(" by value" + x)
+    println("by value" + x)
+  }
+
+  def callbyname(x: => Long): Unit = {
+    println("by name" + x)
+    println("by name" + x)
+  }
+
+
+  callbyvalues(System.nanoTime())
+  callbyname(System.nanoTime())
+
+call by value and call by funcions both of these functions are performing the same 
+thing but they have a subtle difference, and it is the usage of “=>”. Actually, 
+the “=>” makes the input to be lazily evaluated i.e., 
+to be evaluated at a later stage.
+
+
+3)functions with arguments:
+
+in scala function, we can specify the names of parameters during calling 
+the function. in the below given example, we can notice that parameter names 
+are passing during calling.
+
+example:
+
+def trFact(n: Int, acc: Int = 1): Int =
+    if (n <= 1) acc
+    else trFact(n-1, n*acc)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
