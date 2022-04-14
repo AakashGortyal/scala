@@ -1,0 +1,369 @@
+                               ###report 11/4/2022###
+                            ***objected oreianted program ***
+1]what is object ?
+->Object is a real world entity. It contains state and behavior. Laptop, car, cell 
+  phone are the real world objects. Object typically has two characteristics:
+
+1)State: data values of an object are known as its state.
+
+2)Behavior: functionality that an object performs is known as its behavior.
+
+
+2]what is class ?
+->in simple words it organises the data 
+
+3]what is instances ?
+->it is a method which declears the veriables in class
+
+4]constructor?
+->we are passing every instances to the class
+
+5]overloading ?
+->the methods with same name but different parameters
+
+
+#Defining class:
+
+class Bread
+
+#After the class is defined, we can create an object of that class with the new 
+keyword:
+
+val whitebread = new bread
+
+example 1:
+
+# creating a class 
+
+ class practice {
+    val name: String = "white"
+    var weight : Int = 1
+  }
+
+
+  // accessing the class variable
+
+  val accesscls = new practice
+  println(accesscls.name)
+  println(accesscls.weight)
+
+  //We can modify the weight as it’s a mutable object:
+
+  accesscls.weight = 2
+  println(accesscls.weight)
+
+
+#Defining Constructors
+
+A constructor is used to assign values in a class to be used later in the fields or
+methods of the class
+
+example 2:
+
+class constructor (conname: String = "ab") {
+  val name : String = conname
+}
+
+
+
+val objconstructor = new constructor("abc")
+println(objconstructor.name)
+ 
+# Defining Methods
+
+class method(methodname : String = "a" , num : Int = 1) {
+val name: String = methodname
+val number : Int = num
+
+def getamount(price:Int) : Int = {
+price * num
+}
+}
+
+
+val objmethod = new method("a1" , 2)
+println(abjmethod.etamount(2) == 4)
+
+
+II] Scala Objects
+
+#Scala Singleton and Companion Object
+
+1)Singleton object is an object which is declared by using object keyword instead
+  by class. No object is required to call methods declared inside singleton object.
+
+2)If we don't create singleton object, our code will compile successfully but will 
+  not produce any output. Methods declared inside Singleton Object are accessible 
+  globally.
+
+3)In scala, when we have a class with same name as singleton object, it is called
+ companion class and the singleton object is called companion object.
+
+                           ### report date 12/4/2022 ####
+
+1] what is scala inheritance
+->inheritance is an object oriented concept which is used to reusability of code.
+  we can achieve inheritance by using extends keyword. we need to achieve inheritance 
+  a class must extend to other class.
+
+
+example 1:
+
+class Employee{  
+    var salary:Float = 10000  
+}  
+  
+class Programmer extends Employee{  
+    var bonus:Int = 5000  
+    println("Salary = "+salary)  
+    println("Bonus = "+bonus)  
+}  
+  
+      new Programmer()  
+   
+}  
+
+
+types of inheritance:
+1) classA --> classB (single inheritance)
+2)classA --> classB ---> classC (multilevel inheritance)
+3) classA --> (classB , classC) (hierarchical)
+4) classA , classB ---> classC (multiple inheritance)
+5)classA --> (classB , classC) --> classD (hybrid inheritance)
+
+
+example 2:
+class A{  
+    var salary1 = 10000  
+}  
+  
+class B extends A{  
+    var salary2 = 20000  
+}  
+  
+class C extends B{  
+    def show(){  
+        println("salary1 = "+salary1)  
+        println("salary2 = "+salary2)  
+    }  
+}  
+  
+
+        var c = new C()  
+        c.show()  
+     
+}  
+
+
+
+2] what is overriding
+
+->When a subclass has the same name method as defined in the parent class, it is known as method overriding. When subclass wants to provide a specific 
+  implementation for the method defined in the parent class, it overrides method from parent class
+
+example 1:
+
+class Vehicle{  
+    def run(){  
+        println("vehicle is running")  
+    }  
+}  
+  
+class Bike extends Vehicle{  
+     override def run(){  
+        println("Bike is running")  
+    }  
+}  
+  
+        var b = new Bike()  
+        b.run()  
+    }  
+}  
+
+
+
+example 2:
+
+class A {
+  val creatureType = "Wild"
+
+  def  e1(): Unit = println("abc")
+}
+
+class B extends A {
+  override val creatureType = "domestic"
+
+
+  override def e1(): Unit = println("abcde")
+
+}
+
+val a : A = new A
+a.e1()
+println(a.creatureType)
+
+
+val c : A = new B
+c.e1()
+println(c.creatureType)   
+
+
+
+2] what is  method overloading
+
+Scala provides method overloading feature which allows us to define methods of same name but having different parameters or data types. It helps to optimize code.
+
+example 1:
+
+
+class Arithmetic{  
+    def add(a:Int, b:Int){  
+        var sum = a+b  
+        println(sum)  
+    }  
+    def add(a:Int, b:Int, c:Int){  
+        var sum = a+b+c  
+        println(sum)  
+    }  
+}  
+  
+        var a  = new Arithmetic();  
+        a.add(10,10);  
+        a.add(10,10,10);  
+    }  
+}  
+
+3]whai is scala final
+
+Final is a keyword, which is used to prevent inheritance of super class members into derived class. we can declare final variables, methods and classes also.  
+
+
+--> we can't override final variables in subclassYou can't override final variables in subclass
+
+class Vehicle{  
+     final val speed:Int = 60  
+}  
+class Bike extends Vehicle{  
+   override val speed:Int = 100  
+    def show(){  
+        println(speed)  
+    }  
+}  
+  
+
+        var b = new Bike()  
+        b.show()   
+} 
+
+
+--> Final method declare in the parent class can't be override. we can make any method to final if we don't want to get it overridden.
+
+class Vehicle{  
+     final def show(){  
+         println("vehicle is running")  
+     }  
+}  
+class Bike extends Vehicle{  
+   //override val speed:Int = 100  
+    override def show(){  
+        println("bike is running")  
+    }  
+}  
+ 
+        var b = new Bike()  
+        b.show()  
+    }  
+}  
+
+-->we can also make final class. Final class can't be inherited. If we make a class final, it can't be extended further.
+
+final class Vehicle{  
+     def show(){  
+         println("vehicle is running")  
+     }  
+
+
+  
+}  
+  
+class Bike extends Vehicle{  
+       override def show(){  
+        println("bike is running")  
+    }  
+}  
+  
+        var b = new Bike()  
+        b.show()   
+}  
+
+
+# preventing overrides
+
+1) use final on ( variables , methods with in class)
+2) use final on entire class 
+3) use seal to access the class only with in the window we cannot access in other 
+file
+
+
+
+                          #report 14/4/2022 
+1] what is abstract class
+->A class which is declared with abstract keyword is known as abstract class.
+  an abstract class can have abstract methods and non-abstract methods as well.
+  abstraction is a process in which we hide complex implementation details and 
+  show only functionality to the user.
+
+
+2] what is scala Trait
+-> in scala, trait is a collection of abstract and non-abstract methods.
+   we can create trait that can have all abstract methods or some abstract and some non-abstract methods.
+
+->a variable that is declared either by using val or var keyword in a trait get internally implemented in the 
+  class that implements the trait. Any variable which is declared by using val or var 
+but not initialized is considered abstract.
+
+
+3]abstract vs trait
+
+1)Traits support multiple inheritance.
+1)Abstract class does not support multiple inheritance.
+
+2)Traits does not contain constructor parameters.
+2)Abstract class contain constructor parameters.
+
+3)we can allowed to add a trait to an object instance.
+3)we are not allowed to add an abstract class to an object instance.
+
+
+4] scala sccess modifier
+
+--> access modifier is used to define accessibility of data and our code to the outside world. we can apply accessibly to classes, traits, data members, member methods and constructors etc. 
+    scala provides least accessibility to access to all. we can apply any access modifier to our code according to your application requirement.
+
+There are  three types of access modifiers
+
+1)No modifier
+2)Protected
+2)Private
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
