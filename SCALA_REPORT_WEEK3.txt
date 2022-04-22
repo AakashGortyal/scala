@@ -1,0 +1,636 @@
+# 18/4/2022
+
+Q)what is anonymous function in scala..?
+A function that does not contain any name or a function without a name is called
+ as anonymous function in scala,anonymous function is also called a function literal.
+
+While working with the scala anonymous function we use arrow (=>) symbol and this symbol is a transformer in function.
+This transformer is responsible to transmit the parameter from the left-hand side to the right-hand side and there we can perform any operation on our inputs,
+hence here we are evaluating out parameters. It produces a new result on the right-hand side based on the logic or the expression that we have defined there.
+
+
+
+Q)purpose of anonymous function?
+if we want  to create an inline function for a onetime usage. giving a name to a function does not make any use if we do not want to use it anywhere else.
+ In this case, creating an anonymous function is usefull and convinent.
+
+
+1) example 1:
+
+val myFunc: Function1[Int, Int] = new Function1 {
+    override def apply(v1: Int): Int = {
+        v1
+    }
+}
+
+
+part 1 :
+
+val myFunc: Function1[Int, Int]
+
+We’re creating an immutable variable called myFunc of type Function1. The first Int within the square brackets specifies that the input will be of type 
+Int and the second Int specifies the output of the Function.
+
+part 2:
+
+= new Function1 {
+    override def apply(v1: Int): Int = {
+        v1
+    }
+}
+
+
+The definition of the Function — we need to override the apply method and the signature of this method should match the variable type Function1[Int, Int]-
+ e.g. the parameter is of type Int and it returns an Int
+
+
+
+
+
+2) example 2: (we can write example 1 = example 2)  
+
+val myFunc: Int => Int = (v1: Int) => { 
+    v1 
+}
+
+3) example 3
+
+val addTwo: Function2[Int, Int, Int] = new Function2 {
+    
+    // method signature much match above
+    override def apply(v1: Int, v2: Int) {
+        v1 + v2
+    }
+}
+
+3) example 4:
+
+val addThree = (v1: Int, v2: Int, v3: Int) => v1 + v2 + v3
+
+
+
+
+                                          # Higher order functions #
+
+Q)what is higher order functions ...?
+-> higher-ordered functions as they accept functions as parameters.we can also have a higher-order function as one that returns the functions
+
+Q)why do we use higher order functions ...?
+->because we want to be able to reuse our code over and over again on different parameters and to simplify the structure/organization/readability of
+ our program.
+
+example 1:
+  def math(a:Int, b:Int, fun:(Int,Int)=>Int):Int = fun(a,b)
+
+  val sum = math(5, 6, (a,b) => a+b)
+  val diff = math(10, 4, (a,b) => a-b)
+
+  println(s"sum is $sum")
+  println(s"diff is $diff")
+
+
+example 2:
+  def math(c:Int, d:Int,e: Int, fun:(Int,Int)=>Int):Int = fun(fun(c,d),c)
+
+  val sum1 = math(5, 6,7, (c,d) => c+d)
+//  val sum1 = math(5, 6,7, (c,d) => _ + _)
+  val diff1 = math(10, 4,1, (c,d) => c-d)
+
+  println(s"sum is $sum1")
+  println(s"diff is $diff1")
+
+
+Q)Currying Functions in Scala...?
+
+it is a process of transforming a function.function takes multiple arguments into 
+a function that takes single argument.
+
+syntex : def function name(argument1, argument2) = operation
+
+example 1:
+
+    def add(x: Int, y: Int) = x + y;
+  
+    def main(args: Array[String])
+    {
+        println(add(20, 19));
+    }
+}
+
+syntex : def function name(argument1) = (argument2) => operation
+
+example 2:
+
+    def add2(a: Int) = (b: Int) => a + b;
+    {
+        println(add2(20)(19));
+    }
+
+
+example 3:
+    def add2(a: Int) = (b: Int) => a + b;
+    {
+        val sum = add2(29);
+        println(sum(5));
+    }
+
+example 4:
+
+    def add2(a: Int) = (b: Int) => a + b;
+    {
+        println(add2(29)(5));
+       
+    }
+
+
+##19/4/2022
+
+Q) what is Scala map ?
+scala map is a collection of key/value pairs.a value can be retrieved based on its key. Keys are unique in the Map, but values need not be unique.
+Maps are also called Hash tables. There are two kinds of Maps, the immutable and the mutable.
+
+syntex:
+
+// Immutable
+variable = Map(key_1 -> value_1, key_2 -> value_2,
+ key_3 -> value_3, ....)
+
+// Mutable
+variable = scala.collection.mutable.Map(key_1 -> value_1, 
+key_2 -> value_2, key_3 -> value_3, ....)
+
+
+example 1:
+
+  val mapIm = Map("Ajay" -> 30,"Bhavesh" -> 20,"Charlie" -> 50)
+  
+ // Accessing score of Ajay
+        val ajay = mapIm("Ajay") 
+        println(ajay)
+
+example 2:
+
+
+      val mapIm = Map("Ajay" -> 30,
+                        "Bhavesh" -> 20,
+                        "Charlie" -> 50)
+          
+        // the key check in the Map
+        val ajay = if(mapIm.contains("Ajay"))
+                        mapIm("Ajay") else 0
+                          
+        val john = if(mapIm.contains("John"))
+                        mapIm("John") else 0
+  
+        println("Ajay:" + ajay)
+        println("John:" + john)
+
+
+
+example 3: updating values 
+
+
+        val mapMut = scala.collection.mutable.Map("Ajay" -> 30,
+                                                  "Bhavesh" -> 20, 
+                                                  "Charlie" -> 50)
+        println("Before Updating: " + mapMut)
+  
+        // Updating
+        mapMut("Ajay") = 10 
+  
+        println("After Updating: " + mapMut)
+
+
+
+example 4: updating keys 
+
+  val mapMut1 = scala.collection.mutable.Map("Ajay" -> 30,
+    "Bhavesh" -> 20,
+    "Charlie" -> 50)
+
+  println("Before Adding: "+mapMut1)
+
+  // Adding a new key "Dinesh" and
+  // updating an existing key "Ajay"
+  mapMut1 += ("Ajay" -> 10, "Dinesh" -> 60)
+
+  println("After Adding: "+mapMut1)
+
+
+example 5: deleting keys value pairs
+
+        val mapMut = scala.collection.mutable.Map("Ajay" -> 30,
+                                                  "Bhavesh" -> 20,
+                                                  "Charlie" -> 50)
+  
+        println("Before Deleting: "+mapMut)
+  
+        // Deleting key-value pairs with
+        // keys "Ajay" and "Charlie"
+        mapMut -= ("Ajay", "Charlie")
+  
+        println("After Deleting: " + mapMut)
+
+example 6:
+
+       val mapMut = scala.collection.mutable.Map("Ajay" -> 30,
+                                                  "Bhavesh" -> 20,
+                                                  "Charlie" -> 50)
+  
+        // (k, v) is a tuple with two elements
+        for((k, v) <- mapMut) 
+        {    
+            //where k is key and v is value
+            print("Key:"+k+", ")
+            println("Value:"+v)
+        }
+
+
+Q) what is filter method..?
+
+filter is used in  List to select all elements which satisfies a given condition
+
+example 1:
+        val m1 = List(5, 12, 3, 13)
+
+        val result = m1.filter(_ < 10)
+        val result = m1.filter(_ < 3)  
+ 
+        println(result)
+
+
+example 2:
+      val list = List(3, 6, 9, 4, 2)
+      println(list)
+      val result = list.filter(x=>{x % 3 == 0})
+      println(result)     
+
+
+
+Q) what is  flatmap method?
+
+
+it is identical to map() method, it can be defined as a blend of map method and flatten method. The output obtained by running the map method followed by the flatten method is same as 
+obtained by the flatMap().
+
+
+/ example 1:
+  val name = Seq("Nidhi", "Singh")
+  val result1 = name.map(_.toLowerCase)
+
+  val result2 = result1.flatten
+  val result3 = name.flatMap(_.toUpperCase)
+  print(result2)
+  println(result3)
+
+// example 2:
+
+
+  val list = List(2, 3, 4)
+
+  def f(x:Int) = List(x-1, x, x+1)
+
+  val result = list.flatMap(y => f(y))
+
+  println(result)
+
+// example 3:
+
+  val seq = Seq(8, 15, 22, 23, 24)
+
+  val result4 = seq flatMap { s =>
+    if (s % 3 == 0) Seq(s)
+    else Seq(-s)
+  }
+  println(result4)
+
+#20/4/2022
+
+Q what is sequences in scala:
+
+sequence is an iterable collection of class iterable. It is used to represent indexed
+sequences that are having a defined order of element 
+i.e. guaranteed immutable. the elements of sequences can be accessed using their 
+indexes.
+
+predefined metods in scala:
+
+def apply(index: Int): A -> To select an element from the sequence
+def contains[A1 >: A](elem: A1): Boolean -> To check whether a sequence contains the given element
+def count(p: (A)=> Boolean): Int-> To count the number of elements that satisfies a predicate
+def length: Int -> gives the length of the Sequence
+def copyToArray(xs: Array[A], start: Int, len: Int): Unit -> For copying the elements of Sequence to array
+def endsWith[B](that: GenSeq[B]): Boolean-> to check whether a sequence terminates with a given sequence or not
+def head: A ->It selects the first element of the sequence.
+def indexOf(elem: A): Int-> To find the index of first occurrence of a value in the sequence
+def isEmpty: Boolean ->To test the emptiness of the sequence.
+def lastIndexOf(elem: A): Int-> To find the index of last occurrence of a value in the sequence
+def reverse: Seq[A]-> To return a new sequence with elements in reverse order.
+
+
+
+  // examples: 1
+
+  var seq:Seq[Int] = Seq(1,2,3,4,5,6)
+
+
+  println("\nElements Access Using Index")
+  println(seq(0))
+  println(seq(1))
+  println(seq(2))
+  println(seq(3))
+  println(seq(4))
+  println(seq(5))
+
+  // example: 2
+
+  var seq1:Seq[Int] = Seq(1, 2, 3, 4, 5, 6)
+
+  // Printing Sequence
+ // seq.foreach((element:Int) => print(element+","))
+
+  // Using Some Predefined Methods
+  println("\nis Empty: "+ seq1.isEmpty)
+  println("\nEnds with (5,6): "+ seq1.endsWith(Seq(5,6)))
+  println("\nLength of sequence: "+ seq1.length)
+  println("\ncontains 3: "+ seq1.contains(3))
+  println("\nlast index of 4 : "+ seq1.lastIndexOf(4))
+  println("\nReversed sequence: "+ seq1.reverse)
+
+
+Q) what is list
+
+List is used to store ordered elements. It is a class for immutable linked lists.
+It maintains order of elements and can contain duplicates elements also
+
+
+Syntax:
+
+val variable_name: List[type] = List(item1, item2, item3)
+or
+val variable_name = List(item1, item2, item3)
+
+In a Scala list, each element must be of the same type.while construction list is mutable 
+scala.collection.immutable package.
+using list we can to add, prepend, max, min, etc. to enhance the usage of list
+
+
+
+// example 1:
+
+
+   val mylist1 : List[String] = List("akash","ASG","diggibyte","data")
+
+   val mylist2 = List("C","c#","java","scala","php","ruby")
+
+   println(mylist1)
+   for (mylist <- mylist2) {
+     println(mylist2)
+   }
+  println(mylist1.head)
+  println(mylist1.tail)
+  println(mylist1.isEmpty)
+  println("Reverse list:" + mylist1.reverse)
+
+// example 2:
+
+
+  // Creating an Empty List.
+  val emptylist: List[Nothing] = List()
+  val emptylist1  = List()
+  println(emptylist)
+  println(emptylist1)
+
+
+// example 3:
+
+
+  val twolist: List[List[Int]]  = List(List(1,0,0),List(0,1,0),List(0,0,1))
+  println(twolist)
+
+
+  val threelist: List[List[List[Int]]]  = List(List(List(1,0,0,0),List(0,1,0,0),List(0,0,1,0)))
+  println(threelist)
+
+
+// example 4:
+
+  // Repeats Scala three times.
+  val programminglanguage = List.fill(3)("Scala")
+  println( "Programming Language : " + programminglanguage )
+
+  val number= List.fill(8)(4)
+  println("number : " + number)
+
+// example 5:
+
+  var list = List(1,8,5,6,9,58,23,15,4)
+  var list2 = List(88,100)
+  print("Elements: ")
+  list.foreach((element:Int) => print(element+" "))        // Iterating using foreach loop
+  print("\nElement at 2 index: "+list(2))             // Accessing element of 2 index
+  var list3 = list ++ list2                               // Merging two list
+  print("\nElement after merging list and list2: ")
+  list3.foreach((element:Int)=>print(element+" "))
+  var list4 = list3.sorted                            // Sorting list
+  print("\nElement after sorting list3: ")
+  list4.foreach((element:Int)=>print(element+" "))
+  var list5 = list3.reverse                           // Reversing list elements
+  print("\nElements in reverse order of list5: ")
+  list5.foreach((element:Int)=>print(element+" "))
+
+
+Q) what is scala array :
+
+it is a fixed size and it should be same data type. the index of the first element of
+an array is zero and the last element is the total number of elements minus one.
+it is a collection of mutable values.
+scala arrays can be generic. that is  we can have an Array[T], where T is a type parameter or abstract type.
+
+
+Syntax:
+
+var arrayname = new Array[datatype](size)
+
+
+
+ // example1: 
+
+
+  var days = Array("Sunday", "Monday", "Tuesday",
+    "Wednesday", "Thursday", "Friday",
+    "Saturday")
+
+
+  for (m1 <- days) {
+    println(m1)
+  }
+
+  // Accessing an array element
+  println(days(1) )
+
+
+// example 2
+
+  val myarray = Array("C", "c#", "java", "scala", "php", "ruby")
+
+  // Updating anelement in an array
+  myarray(0)="spark"
+  println("After updation array elements are: ")
+
+  for ( m1 <- myarray )
+  {
+    println(m1 )
+  }
+
+
+// example 3
+
+  var myarray1 = new Array[String](3)
+
+  myarray1(0) = "c"
+  myarray1(1) = "c#"
+  myarray1(2) = "c++"
+  println(myarray1)
+
+
+
+// example 4
+
+  var arr1 = Array(1, 2, 3, 4)
+  var arr2 = Array(5, 6, 7, 8)
+
+  var arr3 = arr1 ++ arr2
+  println(arr3)
+
+Q) what is scala  vectors:
+
+
+Vectors in scala are immutable data structures providing random access for elements 
+and is similar to the list. But, the list has incompetence of random access of 
+elements
+
+// example vector
+
+
+  // Creating vector
+  var vector1 = Vector(2, 3, 4, 5)
+
+  // Using println and foreach function
+  // To print elements of vector
+  println(vector1)
+  vector1.foreach((element:Int) => print(element+" "))
+  var newVector = vector1 :+ 10
+  var mergeVector2 = newVector ++ vector1
+  var rev = vector1.reverse
+  var st = vector1.sorted
+  println(newVector)
+  println(mergeVector2)
+  println(rev)
+
+# 21/4/2022
+
+Q) what is scala  tuples:
+
+it is a collection of elements in ordered form. we can use tuple to store any type
+of data.we can store similar type or mix type data also.
+Tuples are heterogeneous data structures, tuple is immutable
+
+
+example 1:
+
+       var name = (15, "chandan", true)
+  
+        println(name._1) // print 1st element
+        println(name._2) // print 2st element
+        println(name._3) // print 3st element
+        val sum = name._1 + name._2 + name._3 + name._4
+
+      println( "Sum of elements: "  + sum )
+
+
+example 2:
+    var (a, b, c) = (15, "chandan", true)
+        println(a)
+        println(b)
+        println(c)
+
+example 3:
+    var name = (15, "chandan", true)
+          
+        // The foreach method takes a function
+        // as parameter and applies it to 
+        // every element in the collection
+        name.productIterator.foreach{i=>println(i)}
+    }
+
+example 4:
+
+      val name = (15, "chandan", true)
+          
+        // print converted string
+        println(name.toString() )
+
+
+Q) what is scala options..?
+
+The Option in Scala is referred to a carrier of single or no element for a stated type. When a method returns a value which can even be null then Option is utilized i.e,
+ the method defined returns an instance of an Option, in place of returning a single object or a null.
+
+
+example 1 :
+
+     val name_ = Map("akash" -> "data_engg",
+     "diggibyte" -> "bigdata")
+
+     val x = name_.get("akash")
+     val y = name_.get("shubham")
+
+     println(x)
+     println(y)
+
+example 2:
+
+  val name__ = Map("akash" -> "data_engg",
+    "diggibyte" -> "bigdata")
+
+  println(patrn(name__.get("akash")))
+  println(patrn(name__.get("rahul")))
+
+  def patrn(z: Option[String]) = z match
+  {
+
+    // for 'Some' class the key for
+    // the given value is displayed
+    case Some(s) => (s)
+
+    // for 'None' class the below string
+    // is displayed
+    case None => ("key not found")
+  }
+
+example 3:
+
+  // Using Some class
+  val some:Option[Int] = Some(15)
+
+  // Using None class
+  val none:Option[Int] = None
+
+
+  // Applying getOrElse method
+  val p4 = some.getOrElse(0)
+  val p5 = none.getOrElse(17)
+
+  // Displays the key in the
+  // class Some
+  println(p4)
+
+  // Displays default value
+  println(p5)
+
+
+# 22/4/2022
+
+
+revision of all above 
